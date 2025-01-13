@@ -101,7 +101,7 @@
 @endsection
 
 <script type="module">
-    import onLoad from 'js/saleedit.js';
+    import onLoad from '/js/saleedit.js';
 
     const products = <?php echo $all_products; ?>;
     const sale = <?php echo $sale; ?>;

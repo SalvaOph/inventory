@@ -110,7 +110,7 @@
 @endsection
 
 <script type="module">
-    import addProduct from '/api/js/salecreate.js';
+    import addProduct from '/js/salecreate.js';
 
     const products = <?php echo $products; ?>;
     const purchase = {};
