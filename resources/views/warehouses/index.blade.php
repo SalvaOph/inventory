@@ -112,9 +112,9 @@
                         @csrf
                         @method('DELETE')
                         <button title="Delete" type="button" class="btn btn-danger delete-button"
-                                data-url="{{ route('warehouses.destroy', $warehouse->id) }}" data-redirect-url="{{ route('warehouses.index') }}">
-                                <i class="fa-solid fa-trash"></i>
-                            </button>
+                            data-url="{{ route('warehouses.destroy', $warehouse->id) }}" data-redirect-url="{{ route('warehouses.index') }}">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
                     </form>
                 </div>
             </td>
@@ -140,8 +140,84 @@
 @endsection
 
 <script type="module">
-    import searchDynamics from '/js/searchdynamics.js';
-    import confirmDelete from '/js/deleteconfirm.js';
+    function confirmDelete() {
+        const deleteButtons = document.querySelectorAll('.delete-button');
+
+        deleteButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const url = button.getAttribute('data-url'); // Obtiene la URL desde el atributo data-url
+                const urlRedirect = button.getAttribute('data-redirect-url');
+
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "You won't be able to revert this!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, delete it!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        fetch(url, {
+                                method: 'DELETE',
+                                headers: {
+                                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                                    'Content-Type': 'application/json',
+                                },
+                            })
+                            .then(async response => {
+                                const contentType = response.headers.get('Content-Type');
+                                let data;
+
+                                if (contentType && contentType.includes('application/json')) {
+                                    data = await response.json();
+                                } else {
+                                    throw new Error("Invalid JSON response");
+                                }
+
+                                if (response.ok) {
+                                    Swal.fire("Deleted!", data.message || "The record has been deleted.", "success")
+                                        .then(() => {
+                                            location.replace(urlRedirect);
+                                        });
+                                } else {
+                                    Swal.fire("Error!", data.message || "There was a problem deleting the record.", "error");
+                                }
+                            })
+                            .catch(error => {
+                                Swal.fire("Error!", "There was a problem with the request.<br><br>" + error.message, "error");
+                            });
+                    }
+                });
+            });
+        });
+    }
+
+    function searchDynamics() {
+        const searchInput = document.querySelector('input[name="search"]');
+        const tableRows = document.querySelectorAll('table tbody tr');
+
+        searchInput.addEventListener('input', function() {
+            const filter = searchInput.value.toLowerCase();
+
+            tableRows.forEach(row => {
+                const cells = row.querySelectorAll('td');
+                let match = false;
+
+                cells.forEach(cell => {
+                    if (cell.textContent.toLowerCase().includes(filter)) {
+                        match = true;
+                    }
+                });
+
+                if (match) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+    };
 
     document.addEventListener('DOMContentLoaded', searchDynamics());
     document.addEventListener('DOMContentLoaded', confirmDelete);
