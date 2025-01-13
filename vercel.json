@@ -2,7 +2,11 @@
     "version": 2,
     "framework": null,
     "functions": {
-        "api/index.php": { "runtime": "vercel-php@0.6.0" }
+        "api/index.php": { "runtime": "vercel-php@0.6.0" },
+        "api/**/*.js": {
+            "memory": 1024,
+            "maxDuration": 10
+        }
     },
     "routes": [
         {
@@ -26,11 +30,5 @@
         "CACHE_DRIVER": "array",
         "LOG_CHANNEL": "stderr",
         "SESSION_DRIVER": "cookie"
-    },
-    "builds": [
-        {
-            "src": "public/js/*",
-            "use": "@vercel/static"
-        }
-    ]
+    }
 }
