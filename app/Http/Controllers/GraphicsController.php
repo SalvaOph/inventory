@@ -23,8 +23,8 @@ class GraphicsController extends Controller
     public function getSalesData()
     {
         // Agrupa las ventas por fecha y suma los totales
-        $sales = Sale::select(DB::raw('DATE(created_at) as date'), DB::raw('SUM(total) as total'))
-            ->groupBy(DB::raw('DATE(created_at)'))
+        $sales = Sale::select(DB::raw('DATE(date) as date'), DB::raw('SUM(total) as total'))
+            ->groupBy(DB::raw('DATE(date)'))
             ->orderBy('date', 'ASC')
             ->get();
 
@@ -42,8 +42,8 @@ class GraphicsController extends Controller
     public function getPurchasesData()
     {
         // Agrupa las ventas por fecha y suma los totales
-        $purchases = Purchase::select(DB::raw('DATE(created_at) as date'), DB::raw('SUM(total) as total'))
-            ->groupBy(DB::raw('DATE(created_at)'))
+        $purchases = Purchase::select(DB::raw('DATE(date) as date'), DB::raw('SUM(total) as total'))
+            ->groupBy(DB::raw('DATE(date)'))
             ->orderBy('date', 'ASC')
             ->get();
 
@@ -64,7 +64,7 @@ class GraphicsController extends Controller
         $productSales = DB::table('product_sale')
             ->join('products', 'product_sale.product_id', '=', 'products.id')
             ->join('sales', 'product_sale.sale_id', '=', 'sales.id')
-            ->select('products.id', 'products.name', DB::raw('COUNT(product_sale.product_id) as total_sales'))
+            ->select('products.id', 'products.name', DB::raw('SUM(product_sale.quantity) as total_sales'))
             ->groupBy('products.id', 'products.name')
             ->orderBy('total_sales', 'DESC')
             ->get();
@@ -86,9 +86,9 @@ class GraphicsController extends Controller
         // Query to get the total sales of the selected product per date
         $productSales = DB::table('product_sale')
             ->join('sales', 'product_sale.sale_id', '=', 'sales.id')
-            ->select(DB::raw('DATE(sales.created_at) as date'), DB::raw('COUNT(product_sale.product_id) as total_sales'))
+            ->select(DB::raw('DATE(sales.date) as date'), DB::raw('SUM(product_sale.quantity) as total_sales'))
             ->where('product_sale.product_id', $productId)
-            ->groupBy(DB::raw('DATE(sales.created_at)'))
+            ->groupBy(DB::raw('DATE(sales.date)'))
             ->orderBy('date', 'ASC')
             ->get();
 

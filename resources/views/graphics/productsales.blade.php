@@ -29,7 +29,7 @@ Highcharts.chart('productsales-chart', {
             enabled: true
         },
         point: {
-            valueSuffix: '%'
+            valueSuffix: ''
         }
     },
 
@@ -48,7 +48,7 @@ Highcharts.chart('productsales-chart', {
                     operator: '>',
                     value: 5
                 },
-                format: '{point.y:.1f}%',
+                format: '{point.y:.0f}',
                 style: {
                     fontSize: '0.9em',
                     textOutline: 'none'
@@ -60,7 +60,7 @@ Highcharts.chart('productsales-chart', {
     tooltip: {
         headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
         pointFormat: '<span style="color:{point.color}">{point.name}</span>: ' +
-            '<b>{point.y:.2f}%</b> of total<br/>'
+            '<b>{point.y:.0f}</b> of total<br/>'
     },
 
     series: [

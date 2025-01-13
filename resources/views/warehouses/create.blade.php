@@ -32,11 +32,11 @@
         </div>
         <div class="form-group">
             <strong>Telephone:</strong>
-            <input type="text" name="telephone" value="{{ isset($warehouse) ? $warehouse->telephone : '' }}" class="form-control">
+            <input type="number" name="telephone" value="{{ isset($warehouse) ? $warehouse->telephone : '' }}" class="form-control">
         </div>
         <div class="form-group">
             <strong>E-mail:</strong>
-            <input type="text" name="email" value="{{ isset($warehouse) ? $warehouse->email : '' }}" class="form-control">
+            <input type="email" name="email" value="{{ isset($warehouse) ? $warehouse->email : '' }}" class="form-control">
         </div>
 
         <div class="form-group mt-2">
