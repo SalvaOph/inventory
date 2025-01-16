@@ -8,7 +8,13 @@ export default defineConfig({
                 'resources/sass/app.scss',
                 'resources/js/app.js',
             ],
+            server: {
+                https: true, // Fuerza HTTPS en el entorno de desarrollo
+            },
             refresh: true,
         }),
     ],
+    build: {
+        manifest: true, // Asegura que Laravel reconozca los archivos generados
+    },
 });
