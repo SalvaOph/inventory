@@ -9,7 +9,7 @@ export default defineConfig({
                 'resources/js/app.js',
             ],
             server: {
-                https: true, // Fuerza HTTPS en el entorno de desarrollo
+                https: true,
             },
             refresh: true,
         }),
