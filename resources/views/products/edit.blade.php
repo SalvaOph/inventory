@@ -35,7 +35,7 @@
         </div>
         <div class="form-group">
             <strong>Price:</strong>
-            <input type="number" name="price" value="{{ isset($product) ? $product->price : '' }}" class="form-control">
+            <input type="number" step="2" name="price" value="{{ isset($product) ? $product->price : '' }}" class="form-control">
         </div>
         <div class="form-group mt-2">
             <button type="submit" class="btn btn-success">

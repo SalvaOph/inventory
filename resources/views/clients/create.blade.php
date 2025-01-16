@@ -32,7 +32,7 @@
         </div>
         <div class="form-group">
             <strong>Telephone:</strong>
-            <input type="number" name="telephone" value="{{ isset($client) ? $client->telephone : '' }}" class="form-control">
+            <input type="tel" name="telephone" value="{{ isset($client) ? $client->telephone : '' }}" class="form-control">
         </div>
         <div class="form-group">
             <strong>E-mail:</strong>
