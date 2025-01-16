@@ -15,6 +15,10 @@ export default defineConfig({
         }),
     ],
     build: {
-        manifest: true, // Asegura que Laravel reconozca los archivos generados
+        outDir: 'public/build', // Genera los archivos en `public/build`
+        manifest: true,         // Activa la generación de `manifest.json`
+        rollupOptions: {
+            input: 'resources/js/app.js',
+        },
     },
 });
