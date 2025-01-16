@@ -14,11 +14,4 @@ export default defineConfig({
             refresh: true,
         }),
     ],
-    build: {
-        outDir: 'public/build', // Genera los archivos en `public/build`
-        manifest: true,         // Activa la generación de `manifest.json`
-        rollupOptions: {
-            input: 'resources/js/app.js',
-        },
-    },
 });
