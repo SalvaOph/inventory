@@ -35,7 +35,7 @@
         <nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-dark">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    <img src="{{ asset('img/logo.png') }}" alt="Logo" style="width: 40px; height: 40px;" class="me-2" />
+                    <img src="https://xjvrsluvedsfgvcfvywv.supabase.co/storage/v1/object/public/NewBucket/logo.png" alt="Logo" style="width: 40px; height: 40px;" class="me-2" />
                     Siddhartha Saha Sport Supplies
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
