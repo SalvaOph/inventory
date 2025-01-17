@@ -35,7 +35,7 @@
     </div>
     <div class="form-group">
         <strong>Price:</strong>
-        <input type="number" step="2" name="price" value="{{ old('price') }}" class="form-control" required>
+        <input type="number" step="0.01" name="price" value="{{ old('price') }}" class="form-control" required>
     </div>
 
     <!-- Campos del Inventario -->

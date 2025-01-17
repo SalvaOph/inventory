@@ -150,6 +150,7 @@
 
             const icon = document.createElement("i");
             icon.setAttribute("class", "fa-solid fa-trash");
+            icon.style.pointerEvents = "none";
             deleteProductBtn.appendChild(icon);
             deleteProductBtn.appendChild(document.createTextNode(" Delete"));
 
@@ -218,6 +219,7 @@
 
             const icon = document.createElement("i");
             icon.setAttribute("class", "fa-solid fa-trash");
+            icon.style.pointerEvents = "none";
             deleteProductBtn.appendChild(icon);
             deleteProductBtn.appendChild(document.createTextNode(" Delete"));
 
