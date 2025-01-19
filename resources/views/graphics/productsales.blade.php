@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div id="productsales-chart" style="width: 100%; height: 400px;"></div>
+<div id="productsales-chart" style="width: 100%; height: 600px;"></div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
@@ -18,10 +18,10 @@ Highcharts.chart('productsales-chart', {
         type: 'pie'
     },
     title: {
-        text: 'Most sold products - YTD'
+        text: 'Product Sales Report'
     },
     subtitle: {
-        text: 'Link to products or sales'
+        text: 'Most sold products details'
     },
 
     accessibility: {
@@ -65,7 +65,7 @@ Highcharts.chart('productsales-chart', {
 
     series: [
         {
-            name: 'Sales',
+            name: 'Product',
             colorByPoint: true,
             data: <?= $data ?>
         },

@@ -75,3 +75,9 @@ Route::get('/graphics/inventories', [GraphicsController::class, 'getInventoryDat
 
 // Ruta para los datos de drilldown de inventories
 Route::get('/getInventoryDrilldownData/{productId}', [GraphicsController::class, 'getInventoryDrilldownData'])->name('graphics.inventories.drilldown');
+
+// Ruta específica para los datos de warehouses
+Route::get('/graphics/warehouses', [GraphicsController::class, 'getWarehouseInventoryData'])->name('graphics.warehouses');
+
+// Ruta para los datos de drilldown de warehouses
+Route::get('/getWarehouseInventoryDrilldownData/{warehouseId}', [GraphicsController::class, 'getWarehouseInventoryDrilldownData'])->name('graphics.warehouses.drilldown');

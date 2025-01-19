@@ -142,4 +142,45 @@ class GraphicsController extends Controller
 
         return response()->json($points);
     }
+
+    public function getWarehouseInventoryData()
+    {
+        $warehouseinventories = DB::table('inventories')
+            ->select('warehouse_id', DB::raw('SUM(stock) as total_stock'))
+            ->groupBy('warehouse_id')
+            ->orderBy('warehouse_id', 'ASC')
+            ->get();
+
+        $points = [];
+        $warehouses = Warehouse::whereIn('id', $warehouseinventories->pluck('warehouse_id'))->get()->keyBy('id');
+        foreach ($warehouseinventories as $warehouseinventory) {
+            $points[] = [
+                'id' => $warehouseinventory->warehouse_id,
+                'name' => $warehouses[$warehouseinventory->warehouse_id]->name ?? 'Unknown',
+                'y' => intval($warehouseinventory->total_stock),
+            ];
+        }
+
+        return view('graphics.warehouses', ["data" => json_encode($points)]);
+    }
+
+
+    public function getWarehouseInventoryDrilldownData($warehouseId)
+    {
+        $warehouseinventories = Inventory::select('product_id', DB::raw('SUM(stock) as total_stock'))
+            ->where('warehouse_id', $warehouseId)
+            ->groupBy('product_id')
+            ->orderBy('total_stock', 'DESC')
+            ->get();
+
+        $points = [];
+        foreach ($warehouseinventories as $warehouseinventory) {
+            $points[] = [
+                'name' => Product::find($warehouseinventory->product_id)->name,
+                'y' => intval($warehouseinventory->total_stock)
+            ];
+        }
+
+        return response()->json($points);
+    }
 }

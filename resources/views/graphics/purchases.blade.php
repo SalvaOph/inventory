@@ -16,10 +16,10 @@
             type: 'column'
         },
         title: {
-            text: 'Purchases per day report - All Time'
+            text: 'Purchases per day report'
         },
         subtitle: {
-            text: 'Purchases chart subtitle, can countain a link to purchases'
+            text: 'Total purchases amount per day'
         },
         accessibility: {
             announceNewData: {
@@ -58,7 +58,7 @@
         },
 
         series: [{
-            name: 'Total Purchases',
+            name: 'Total Purchases per date',
             colorByPoint: true,
             data: <?= $data ?>
         }, ],

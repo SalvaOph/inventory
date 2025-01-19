@@ -48,7 +48,7 @@
                 </div>
                 <div class="">
                     <div class="card text-white bg-warning mb-3">
-                        <div class="card-header"><a class="text-white text-decoration-none" href="{{ route('warehouses.index') }}">Total Products per Warehouse</a></div>
+                        <div class="card-header"><a class="text-white text-decoration-none" href="{{ route('graphics.warehouses') }}">Total Products per Warehouse</a></div>
                         <div class="card-body">
                                 @foreach ($totalProductsByWarehouse as $warehouseName => $totalStock)
                                 <div class="p-2 text-light-emphasis bg-light-subtle border border-light-subtle" color="$yellow-100">

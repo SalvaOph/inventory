@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div id="inventories-chart" style="width: 100%; height: 600px;"></div>
+<div id="warehouses-chart" style="width: 100%; height: 600px;"></div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
@@ -13,15 +13,15 @@
 <script src="https://code.highcharts.com/modules/drilldown.js"></script>
 
 <script>
-Highcharts.chart('inventories-chart', {
+Highcharts.chart('warehouses-chart', {
     chart: {
         type: 'pie'
     },
     title: {
-        text: 'Total Inventory by Product'
+        text: 'Total Inventory by Warehouse'
     },
     subtitle: {
-        text: 'Click the columns to view inventory by warehouse.'
+        text: 'Click the columns to view products\' inventory by warehouse.'
     },
 
     accessibility: {
@@ -29,7 +29,7 @@ Highcharts.chart('inventories-chart', {
             enabled: true
         },
         point: {
-            valueSuffix: '%'
+            valueSuffix: ''
         }
     },
 
@@ -65,7 +65,7 @@ Highcharts.chart('inventories-chart', {
 
     series: [
         {
-            name: 'Inventory',
+            name: 'Warehouse',
             colorByPoint: true,
             data: <?= $data ?>
         },
@@ -81,7 +81,7 @@ Highcharts.addEvent(Highcharts.Series, 'click', function (e) {
 
     if (!drilldownSeries.length) {
         $.ajax({
-            url: '/getInventoryDrilldownData/' + e.point.options.id,
+            url: '/getWarehouseInventoryDrilldownData/' + e.point.options.id,
             method: 'GET',
             success: function (data) {
                 var drilldownData = {

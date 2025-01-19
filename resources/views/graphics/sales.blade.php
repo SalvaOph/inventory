@@ -16,10 +16,10 @@
             type: 'column'
         },
         title: {
-            text: 'Sales per day report - All Time'
+            text: 'Sales per day report'
         },
         subtitle: {
-            text: 'Sales chart subtitle, can countain a link to sales'
+            text: 'Total sales amount per day'
         },
         accessibility: {
             announceNewData: {
@@ -58,7 +58,7 @@
         },
 
         series: [{
-            name: 'Total Sales',
+            name: 'Total Sales per date',
             colorByPoint: true,
             data: <?= $data ?>
         }, ],
