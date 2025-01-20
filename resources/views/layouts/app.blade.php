@@ -21,7 +21,8 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 
     <!-- Scripts -->
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    <link rel="stylesheet" href="{{ Vite::customAsset('resources/sass/app.scss') }}">
+    <script type="module" src="{{ Vite::customAsset('resources/js/app.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
@@ -35,7 +36,7 @@
         <nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-dark">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    <img src="https://xjvrsluvedsfgvcfvywv.supabase.co/storage/v1/object/public/NewBucket/logo.png" alt="Logo" style="width: 40px; height: 40px;" class="me-2" />
+                    <img src="{{ Vite::customAsset('resources/img/logo.png') }}" alt="Logo" style="width: 40px; height: 40px;" class="me-2" />
                     Siddhartha Saha Sport Supplies
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">

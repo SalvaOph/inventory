@@ -7,11 +7,16 @@ export default defineConfig({
             input: [
                 'resources/sass/app.scss',
                 'resources/js/app.js',
+                "resources/img/logo.png",
             ],
-            server: {
-                https: true,
-            },
             refresh: true,
         }),
     ],
+    build: {
+        outDir: "public/build",
+        assetsDir: "assets",
+    },
+    server: {
+        https: true,
+    },
 });

@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Pagination\Paginator;
 use App\Services\PdfExportService;
 use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Facades\Vite;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -26,8 +27,19 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Paginator::useBootstrap();
+
         if (app()->environment('production')) {
             URL::forceScheme('https');
         }
+
+        Vite::macro('customAsset', function ($path) {
+            $assetPath = Vite::asset($path);
+
+            if (env('APP_ENV') === 'production') {
+                return str_replace('/build/', '/', $assetPath);
+            }
+    
+            return $assetPath;
+        });
     }
 }
