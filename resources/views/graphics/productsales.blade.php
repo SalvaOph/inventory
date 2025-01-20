@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div id="productsales-chart" style="width: 100%; height: 600px;"></div>
+<div id="productsales-chart" style="width: 100%; height: 500px;"></div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
